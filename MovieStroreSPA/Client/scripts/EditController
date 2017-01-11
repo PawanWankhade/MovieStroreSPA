@@ -1,0 +1,24 @@
+app.controller("EditController",function($scope,movieService){
+  $scope.isEditable = function(){
+    return $scope.edit && $scope.edit.movie;
+  };
+  
+  $scope.Cancle = function(){
+    $scope.edit.movie = null;
+  };
+  
+  $scope.Save = function(){
+    if($scope.edit.movie.Id){
+      movieService.updateMovie($scope.edit.movie).success(function(){
+        angular.extend($scope.movie,$scope.edit.movie);
+      });
+    }
+    else{
+      movieService.insertMovie($scope.edit.movie).success(function(movie){
+        $scope.movies.push(movie);
+        $scope.edit.movie = null;
+      });
+    }
+  }
+  
+});
