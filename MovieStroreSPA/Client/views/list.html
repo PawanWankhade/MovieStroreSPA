@@ -1,12 +1,15 @@
 ﻿<div ng-controller="ListController">
+     <h3>{{message}}</h3>
     <table class="table">
         <tr ng-repeat="movie in movies">
             <td>{{movie.Id}}</td>
+            <td><a href="#/details/{{movie.Id}}">{{movie.Id}}</a></td>
             <td><a href="#/details/{{movie.Id}}">{{movie.Title}}</a></td>
             <td>{{movie.ReleaseDate}}</td>
-            <td><button ng-click="Delete(movie.Id)" class="btn btn-default">Delete</button></td>
-
-
+            <td><button ng-click="delete(movie)" class="btn btn-default">Delete</button></td>
+            <td><a href="#/details/{{movie.Id}}">Edit</a></td>
         </tr>
+        <button class="btn btn-default" ng-click="create()">Create</button>
+        <div ng-include="'/Client/View/edit.html'"></div>
     </table>
 </div>
